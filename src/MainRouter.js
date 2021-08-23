@@ -1,40 +1,29 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Signup from "./components/Signup/SignUp";
-import Login from "./components/Login/Login";
-import Home from "./components/Home/Home";
-import Nav from "./components/Nav/Nav";
-import Weather from "./components/Weather/Weather";
-import Profile from "./components/Profile/Profile";
+import { Route, Switch, Redirect } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "weather-icons/css/weather-icons.css";
+import Navbar from "./components/Navbar/Navbar";
+// import Auth from "./components/Auth/Auth";
+// import Home from "./components/Home/Home";
+// import NotFound from "./components/NotFound/NotFound";
 
-const MainRouter = (props) => {
+const Home = React.lazy(() => import("./components/Home/Home"));
+const Auth = React.lazy(() => import("./components/Auth/Auth"));
+const NotFound = React.lazy(() => import("./components/NotFound/NotFound"));
+
+function MainRouter() {
   return (
-    <Router>
-      <Nav user={props.user} handleUserLogout={props.handleUserLogout} />
-      <>
-        <PrivateRoute exact path="/weather" component={Weather} />
-        <PrivateRoute
-          exact
-          path="/profile"
-          component={Profile}
-          handleUserLogout={props.handleUserLogout}
-        />
-        <Route exact path="/sign-up" component={Signup} />
-        <Route
-          exact
-          path="/login"
-          render={(routerProps) => (
-            <Login {...routerProps} handleUserLogin={props.handleUserLogin} />
-          )}
-        />
-        {/* <Route exact path="/weather" component={Weather} /> */}
-        <Route exact path="/" component={Home} />
-      </>
-    </Router>
+    <>
+      <Navbar />
+      <Switch>
+        <Route exact path="/sign-up" component={Auth} />
+        <Route exact path="/login" component={Auth} />
+        <Route exact path="/logout" render={() => <Redirect to="/login" />} />
+        <PrivateRoute exact path="/" component={Home} />
+
+        <Route component={NotFound} />
+      </Switch>
+    </>
   );
-};
+}
 
 export default MainRouter;

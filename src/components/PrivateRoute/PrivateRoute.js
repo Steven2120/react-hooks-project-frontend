@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import checkIfUserIsAuth from "../utils/checkIfUserIsAuth";
+// import checkIfUserIsAuth from "../utils/checkIfUserIsAuth";
+import { AuthContext } from "../../context/AuthContext";
+import Cookie from "js-cookie";
 
-const PrivateRoute = ({ component: Component, handleUserLogout, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const { state: user } = useContext(AuthContext);
+
+  function checkIfCookieExists() {
+    const cookie = Cookie.get("jwt-cookie");
+    if (cookie) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   return (
     <Route
       {...rest}
-      render={(routerProps) =>
-        checkIfUserIsAuth() ? (
-          <Component {...routerProps} handleUserLogout={handleUserLogout} />
+      render={(props) =>
+        checkIfCookieExists() ? (
+          <Component {...props} />
         ) : (
           <Redirect to="/login" />
         )

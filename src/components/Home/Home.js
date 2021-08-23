@@ -1,10 +1,7 @@
-import React, { Component } from "react";
-import "./Home.css";
+import React from "react";
 
-export class Home extends Component {
-  render() {
-    return <div className="home">Weather App</div>;
-  }
+function Home() {
+  return <div className="home">Weather App</div>;
 }
 
 export default Home;
