@@ -70,7 +70,7 @@ function useFetchAPI(url) {
         });
       }
     } catch (e) {
-      //console.log(e.response);
+      console.log(e);
       setError(e.response.data.message);
       // setError(e.response);
       setIsLoading(false);
