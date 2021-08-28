@@ -111,7 +111,7 @@ function Auth(props) {
 
   if (isLoading) {
     return (
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center", color: "white" }}>
         <CircularProgress />
       </div>
     );

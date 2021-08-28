@@ -1,0 +1,11 @@
+.home {
+    text-align: center;
+    margin-top: 15%;
+    font-size: 75px;
+    color: goldenrod;
+}
+
+.weather-link-div {
+    text-align: center;
+    margin-top: 3rem;
+}
