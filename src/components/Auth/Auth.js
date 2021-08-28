@@ -150,6 +150,9 @@ function Auth(props) {
             onChange={handleEmailChange}
             error={isEmailError}
             helperText={emailErrorMessage}
+            style={{
+              backgroundColor: "lightgray",
+            }}
           />
         </Grid>
 
@@ -163,6 +166,9 @@ function Auth(props) {
               onChange={handleUsernameChange}
               error={isUsernameError}
               helperText={usernameErrorMessage}
+              style={{
+                backgroundColor: "lightgray",
+              }}
             />
           </Grid>
         )}
@@ -176,6 +182,9 @@ function Auth(props) {
             onChange={handlePasswordChange}
             error={isPasswordError}
             helperText={passwordErrorMessage}
+            style={{
+              backgroundColor: "lightgray",
+            }}
           />
         </Grid>
 
@@ -183,8 +192,11 @@ function Auth(props) {
           <Button
             type="submit"
             variant="contained"
-            color="primary"
-            style={{ marginTop: 10 }}
+            style={{
+              marginTop: 10,
+              color: "white",
+              backgroundColor: "lightcoral",
+            }}
             disabled={
               isLoginRoute
                 ? isEmailDisbaled || isPasswordDisbaled
