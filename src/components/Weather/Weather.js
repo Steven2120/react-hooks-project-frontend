@@ -64,7 +64,7 @@ function Weather() {
 
       if (city1 && country1) {
         const apiCall = await fetch(
-          `http://api.openweathermap.org/data/2.5/weather?q=${city1},${country1}&appid=${API_KEY}`
+          `https://api.openweathermap.org/data/2.5/weather?q=${city1},${country1}&appid=${API_KEY}`
         );
 
         const response = await apiCall.json();
